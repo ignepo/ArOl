@@ -1305,6 +1305,10 @@ void thread_down(void) {
 				continue;
 			}
 			
+			MSG("DEBUG: message length: %i)\n", (int) msg_len);
+			MSG("DEBUG: protocol version: %i)\n", (int) buff_down[0]);
+			MSG("DEBUG: packet type: %i)\n", (int) buff_down[3]);
+			
 			/* if the datagram does not respect protocol, just ignore it */
 			if ((msg_len < 4) || (buff_down[0] != PROTOCOL_VERSION) || ((buff_down[3] != PKT_PULL_RESP) && (buff_down[3] != PKT_PULL_ACK))) {
 				MSG("WARNING: [down] ignoring invalid packet\n");
@@ -1333,7 +1337,7 @@ void thread_down(void) {
 			/* the datagram is a PULL_RESP */
 			buff_down[msg_len] = 0; /* add string terminator, just to be safe */
 			MSG("INFO: [down] PULL_RESP received :)\n"); /* very verbose */
-			// printf("\nJSON down: %s\n", (char *)(buff_down + 4)); /* DEBUG: display JSON payload */
+			printf("\nJSON down: %s\n", (char *)(buff_down + 4)); /* DEBUG: display JSON payload */
 			
 			/* initialize TX struct and try to parse JSON */
 			memset(&txpkt, 0, sizeof txpkt);
