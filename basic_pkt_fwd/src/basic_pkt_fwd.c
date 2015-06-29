@@ -1549,7 +1549,7 @@ void thread_down(void) {
 			i = b64_to_bin(str, strlen(str), txpkt.payload, sizeof txpkt.payload);
 			if (i != txpkt.size) {
 				MSG("DEBUG: Comupte size %i", i);
-				MSG("DEBUG: size %i", txpk.size);
+				MSG("DEBUG: size %i", txpkt.size);
 				MSG("WARNING: [down] mismatch between .size and .data size once converter to binary\n");
 			}
 			
